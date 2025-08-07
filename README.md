@@ -14,8 +14,8 @@
   - php artisan key:generate
   - composer require laravel/fortify
     - php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
-  - 【未実行：メール認証は追加実装項目にて】composer require laravel/ui // メール認証のためlaravel/uiをインストール
-    - 【未実行】php artisan ui bootstrap --auth
+  - composer require laravel/ui // fortify標準のview等(register,login)を使用するためインストール
+    - php artisan ui bootstrap --auth
   - 【未実行】php artisan storage:link  // シンボリックリンク作成
 ## 開発環境
 
