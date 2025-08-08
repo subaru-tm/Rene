@@ -16,8 +16,11 @@
     - php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
   - composer require laravel/ui // fortify標準のview等(register,login)を使用するためインストール
     - php artisan ui bootstrap --auth
-  - 【未実行】php artisan storage:link  // シンボリックリンク作成
+  - php artisan storage:link  // シンボリックリンク作成
+  - composer require livewire/livewire  // menuをモーダル表示にするためにインストール
+    - php artisan make:livewire Modal
 ## 開発環境
 
 ## 使用技術
 - laravel/fortify 1.19
+- livewire/livewire 2.12
