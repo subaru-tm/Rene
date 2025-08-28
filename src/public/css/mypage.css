@@ -1,0 +1,127 @@
+.content {
+    display: flex;
+}
+
+.reservation {
+    width: 36%;
+    margin-left: 2%;
+}
+
+.reservation h1 {
+    color: #F0F0F0;
+}
+
+.reservation-card {
+    padding: 12px 24px;
+    width: 80%;
+    height: 260px;
+    background: #4169E1;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+    box-shadow: 2px 2px 2px #696969;
+}
+
+.reservation-card__header {
+    display: flex;
+    align-items: center;
+}
+
+.reservation-card__header img {
+    width: 24px;
+    height: 24px;
+}
+
+.reservation-card__header p {
+    margin-left: 24px;
+}
+
+.reservation-cancel {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.reservation-cancel button {
+    width: 24px;
+    height: 42px;
+    background: #4169E1;
+    border: none;
+    cursor: pointer;
+}
+
+.reservation-card__table {
+    text-align: left;
+    font-size: 15px;
+}
+
+.table-item {
+    padding: 10px 0 10px 32px;
+}
+
+.favorite-restaurants {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.favorite-card {
+    margin: 0 60px 24px 0;
+    width: 280px;
+    height: 260px;
+    box-shadow: 2px 2px 2px #696969;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.favorite-card img {
+    width: 100%;
+    height: 55%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.favorite-card__info {
+    margin-left: 20px;
+}
+
+.favorite-card__info-name {
+    margin: 16px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.favorite-card__info-tag {
+    display: flex;
+    align-items: stretch;
+}
+
+.favorite-card__info-tag span {
+    margin-right: 2px;
+    font-size: 10px;
+}
+
+.favorite-card__info-footer {
+    margin-top: 12px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorite-card__detail-link {
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 11px;
+    background-color: #4169E1;
+    color: #FFFFFF;
+    border-radius: 3px;
+}
+
+.favorite-form__button {
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.favorite-form__button img {
+    width: 30px;
+    height: 30px;
+}

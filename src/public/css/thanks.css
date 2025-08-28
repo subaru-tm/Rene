@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    margin: 80px auto;
+    width: 360px;
+    height: 240px;
+    box-shadow: 4px 4px 2px #696969;
+    background: #FFFFFF;
+    text-align: center;
+    align-items: center;
+}
+
+.card-body {
+    margin: auto;
+}
+
+.card-body__thanks {
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.card-body a {
+    display: inline-block;
+    padding-top: 1px;
+    width: 77px;
+    height: 18px;
+    text-decoration: none;
+    background: #4169E1;
+    color: #FFFFFF;
+    font-size: 10px;
+    border-radius: 3px;
+}

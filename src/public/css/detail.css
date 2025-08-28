@@ -1,0 +1,153 @@
+main {
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    height: auto;
+}
+.restaurant-info {
+    margin-left: 8px;
+    width: 40%;
+}
+
+.restaurant-info__header {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    height: 30px;
+    padding: 6px 9px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #696969;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.restaurant-info__name {
+    margin-left: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.restaurant-info img {
+    width: 100%;
+}
+
+.restaurant-info__tag {
+    margin: 24px 0;
+}
+
+.reservation {
+    position: relative;
+    top: 0;
+    right: 0;
+    transform: translate(15%, -58px);
+    width: 40%;
+    height: auto;
+    min-height: 690px;
+    background: #4169E1;
+    padding: 0 28px;
+    border-radius: 6px;
+}
+
+.reservation h2 {
+    color: #FFFFFF;
+}
+
+.reservation-form {
+    position: relative;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reservation-form__input {
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.reservation-form__input input{
+    margin-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 8px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+}
+
+.reservation-form__input-date {
+    width: 180px;
+}
+ 
+.reservation-form__input-time {
+    width: 94%;
+}
+
+.reservation-form__input-number {
+    width: 94%;
+}
+
+.reservation-form__submit {
+    background: #0000FF;
+    height: 54px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.reservation-record {
+    width: 90%;
+    height: 60%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 210px 28px;
+    overflow-y: auto;
+}
+
+.reservation-card {
+    padding: 16px 24px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    background: #6495ED;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.table-item {
+    padding-left: 24px;
+}
+
+.reservation-card__cancel {
+    z-index: 1100;
+    margin: auto 0 0 auto;
+}
+
+.reservation-card__cancel-button {
+    background: #B0C4DE;
+    border: none;
+    border-radius: 8px;
+    color: #6495ED;
+    cursor: pointer;
+}
