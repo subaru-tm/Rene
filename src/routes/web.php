@@ -21,20 +21,20 @@ Auth::routes();
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
-Route::get('/login', [LoginController::class, 'loginView']);
+Route::get('/login', [LoginController::class, 'loginView'])->name('login.view');
 Route::post('/login',[LoginController::class, 'login'])->name('login');
 Route::get('/thanks', [RegisterController::class, 'thanks'])->name('thanks');
 
 Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('detail');
-Route::get('/search', [RestaurantController::class, 'search']);
+Route::get('/search', [RestaurantController::class, 'search'])->name('search');
 
 
 Route::middleware('auth')->group(function () {
     Route::post('/cancel/{reservation_id}', [ReservationController::class, 'cancel']);
-    Route::post('/detail/{restaurant_id}/reservation', [ReservationController::class, 'reservation']);
+    Route::post('/detail/{restaurant_id}/reservation', [ReservationController::class, 'reservation'])->name('reservation');
     Route::get('/done', [ReservationController::class, 'done']);
-    Route::post('/favorite/{restaurant_id}/on', [RestaurantController::class, 'favoriteOn']);
-    Route::post('/favorite/{restaurant_id}/off', [RestaurantController::class, 'favoriteOff']);
+    Route::post('/favorite/{restaurant_id}/on', [RestaurantController::class, 'favoriteOn'])->name('favorite.on');
+    Route::post('/favorite/{restaurant_id}/off', [RestaurantController::class, 'favoriteOff'])->name('favorite.off');
     Route::get('/mypage', [MypageController::class, 'mypage']);
 });
 

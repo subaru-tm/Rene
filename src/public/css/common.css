@@ -93,6 +93,7 @@ body {
 .menu-button {
     border:none;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .menu-button img {
@@ -107,6 +108,7 @@ body {
     font-weight: bold;
     color: #4169E1;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .modal-header {
@@ -133,6 +135,7 @@ body {
     border: none;
     border-radius: 3px;
     box-shadow: 1.5px 1.5px 0.5px #696969;
+    cursor: pointer;
 }
 
 

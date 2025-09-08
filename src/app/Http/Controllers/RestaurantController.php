@@ -50,7 +50,6 @@ class RestaurantController extends Controller
     public function detail($restaurant_id) {
         $user_id = Auth::id();
         $restaurant = Restaurant::find($restaurant_id);
-
         $cancel_flug_off = '0';
         $reservations = Reservation::with('restaurant')->ReservationSearch($user_id, $restaurant_id, $cancel_flug_off)->get();
 

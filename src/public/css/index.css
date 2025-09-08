@@ -106,6 +106,7 @@
 .favorite-form__button {
     border: none;
     background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 .favorite-form__button img {

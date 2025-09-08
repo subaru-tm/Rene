@@ -23,7 +23,7 @@ class ReservationController extends Controller
             'number' => $number,
         ]);
 
-        return view('/done', compact('restaurant_id'));
+        return view('done', compact('restaurant_id'));
 
     }
 

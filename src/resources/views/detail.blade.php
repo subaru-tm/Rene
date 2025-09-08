@@ -47,7 +47,7 @@
                         </tr>
                         <tr class="reservation-card__table-row">
                             <th class="table-field">Time</th>
-                            <td class="table-item">{{ $reservation->time }}</td>
+                            <td class="table-item">{{ Carbon\Carbon::parse($reservation->time)->format('H:i') }}</td>
                         </tr>
                         <tr class="reservation-card__table-row">
                             <th class="table-field">Number</th>

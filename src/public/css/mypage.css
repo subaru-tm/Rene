@@ -63,6 +63,10 @@
     flex-wrap: wrap;
 }
 
+.favorite {
+    width: 60%;
+}
+
 .favorite-card {
     margin: 0 60px 24px 0;
     width: 280px;

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Reservation;
+use App\Models\Favorite;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AreasTableSeeder::class);
         $this->call(GenresTableSeeder::class);
         $this->call(RestaurantsTableSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        Reservation::factory()->count(20)->create();
+        Favorite::factory()->count(10)->create();
     }
 }

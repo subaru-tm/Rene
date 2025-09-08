@@ -70,7 +70,7 @@
                     @if (!$loggedin)
                         <!-- ログインしていない場合、一律でお気に入り未登録状態を表示 -->
                         <form class="restaurant-card__favorite-form" method="POST" 
-                            action="favorite/{{ $restaurant->id }}/on" >
+                            action="/favorite/{{ $restaurant->id }}/on" >
                             @csrf
                             <button class="favorite-form__button" type="submit">
                                 <img src="{{ asset('storage/favorite_off.png') }}" alt="" />
@@ -82,7 +82,7 @@
                             @if( $favorite->favorite_flug == '1')
                                 <!-- お気に入り登録済の場合、解除のformとする -->
                                 <form class="restaurant-card__favorite-form" method="POST" 
-                                    action="favorite/{{ $restaurant->id }}/off" >
+                                    action="/favorite/{{ $restaurant->id }}/off" >
                                     @csrf
                                     <button class="favorite-form__button" type="submit">
                                         <img src="{{ asset('storage/favorite_on.png') }}" alt="" />
@@ -92,7 +92,7 @@
                             @else
                                 <!-- お気に入りレコードが存在し解除済の場合、登録のformとする -->
                                 <form class="restaurant-card__favorite-form" method="POST" 
-                                    action="favorite/{{ $restaurant->id }}/on" >
+                                    action="/favorite/{{ $restaurant->id }}/on" >
                                     @csrf
                                     <button class="favorite-form__button" type="submit">
                                         <img src="{{ asset('storage/favorite_off.png') }}" alt="" />
@@ -105,7 +105,7 @@
                       @if( $favorite_displayed == 0 )
                         <!-- favoritesテーブルに該当店レコードが存在しない場合、foreachに入らない。この場合は登録form -->
                         <form class="restaurant-card__favorite-form" method="POST" 
-                            action="favorite/{{ $restaurant->id }}/on" >
+                            action="/favorite/{{ $restaurant->id }}/on" >
                             @csrf
                             <button class="favorite-form__button" type="submit">
                                 <img src="{{ asset('storage/favorite_off.png') }}" alt="" />
