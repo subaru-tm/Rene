@@ -10,13 +10,13 @@
         <div class="card-header">{{ __('Login') }}</div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/login/store">
                 @csrf
 
                 <div class="card-body__input-group">
                     <img src="{{ asset('storage/email_img.png') }}" alt="" />
                     <span class="input-area">
-                        <input type="email" class="form-input" name="email" value="{{ old('email') }}" placeholder="Email" autocomplete="email" autofocus>
+                        <input type="text" class="form-input" name="email" value="{{ old('email') }}" placeholder="Email" autocomplete="email" autofocus>
 
                         <div class="invalid-feedback" role="alert">
                             @error('email')

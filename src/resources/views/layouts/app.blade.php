@@ -29,7 +29,18 @@
 </head>
 <body>
     <div class="menu">
-        @livewire('modal')
+        @if ( !$errors->any() )
+            @livewire('modal')
+        @else
+        <div class="header">
+            <button class="menu-button" type="button">
+                <img src="{{ asset('storage/menu_button.png') }}" alt="" />
+            </button>
+            <a class="app-name" href="/">
+                Rese
+            </a>
+        </div>
+        @endif
     </div>
 
     <main>

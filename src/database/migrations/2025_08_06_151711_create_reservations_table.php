@@ -21,6 +21,8 @@ class CreateReservationsTable extends Migration
             $table->time('time');
             $table->integer('number');
             $table->boolean('cancel_flug')->default(false);
+            $table->tinyInteger('review_rating')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

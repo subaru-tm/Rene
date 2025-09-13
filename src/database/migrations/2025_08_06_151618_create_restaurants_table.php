@@ -17,9 +17,10 @@ class CreateRestaurantsTable extends Migration
             $table->id();
             $table->foreignId('area_id')->constrained()->cascadeOnDelete();
             $table->foreignId('genre_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->text('description');
-            $table->string('image_pass')->nullable;
+            $table->string('image_pass')->nullable();
             $table->timestamps();
         });
     }

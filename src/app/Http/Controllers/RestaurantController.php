@@ -9,6 +9,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
+use Carbon\Carbon;
 
 class RestaurantController extends Controller
 {
@@ -51,9 +52,33 @@ class RestaurantController extends Controller
         $user_id = Auth::id();
         $restaurant = Restaurant::find($restaurant_id);
         $cancel_flug_off = '0';
-        $reservations = Reservation::with('restaurant')->ReservationSearch($user_id, $restaurant_id, $cancel_flug_off)->get();
+        $now = Carbon::now();
 
-        return view('detail', compact('restaurant', 'reservations'));
+        $reservations = Reservation::with('restaurant')->with('user')->ReservationSearch($user_id, $restaurant_id, $cancel_flug_off, $now)->get();
+
+        $visited_reservations = Reservation::with('restaurant')->with('user')->VisitedSearch($user_id, $restaurant_id, $cancel_flug_off, $now)->get();
+
+        // レビューの平均点を算出する
+        $i = 0;
+        $rating_sum = 0;
+        foreach( $visited_reservations as $reservation ) {
+            // 評価済(review_ratingがnullでない)のみ対象
+            if( !is_null($reservation->review_rating) ) {
+                $rating_sum = $rating_sum + $reservation->review_rating;
+                $i++; 
+            }
+        }
+
+        // 平均点が算出できない(評価がまだない、等)場合を
+        // 考慮して、評価の数が0でない場合のみ算出。
+        if ( $i <> 0) {
+            $rating_average = $rating_sum / $i;
+        } else {
+            $rating_average = 0;
+             // 0を評価がまだない場合と意味付けする
+        }
+
+        return view('detail', compact('restaurant', 'reservations', 'visited_reservations', 'rating_average'));
     }
 
     public function favoriteOn($restaurant_id) {

@@ -9,6 +9,8 @@ main {
 .restaurant-info {
     margin-left: 8px;
     width: 40%;
+    height: 80vh;
+    overflow: auto;
 }
 
 .restaurant-info__header {
@@ -40,6 +42,45 @@ main {
 
 .restaurant-info__tag {
     margin: 24px 0;
+}
+
+.restaurant-info__review {
+    margin-top: 4px;
+}
+
+.review-rating__average {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #D9D9D9;
+}
+.review-rating__average p {
+    font-weight: bold;
+    margin-right: 24px;
+}
+
+.rating__label-average {
+    color: #D9D9D9;
+    font-size: 32px;
+}
+
+.rating__label {
+    color: #D9D9D9;
+    font-size: 24px;
+}
+
+.rating__input {
+    display: none;
+}
+
+.review-rating__average-numeric {
+    margin-left: 8px;
+    padding-top: 8px;
+}
+
+.review-card {
+    margin-left: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #D9D9D9;
 }
 
 .reservation {
@@ -75,7 +116,7 @@ main {
 }
 
 .reservation-form__input input{
-    margin-bottom: 10px;
+    margin-top: 10px;
     padding-left: 12px;
     padding-right: 8px;
     height: 32px;
@@ -93,6 +134,11 @@ main {
 
 .reservation-form__input-number {
     width: 94%;
+}
+
+.invalid-feedback {
+    font-size: 16px;
+    color: #ee6c75;
 }
 
 .reservation-form__submit {

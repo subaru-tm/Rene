@@ -8,6 +8,7 @@ class Modal extends Component
 {
     public $showModal=false;
 
+
     public function openModal(){
         $this->showModal=true;
     }
@@ -18,6 +19,8 @@ class Modal extends Component
 
     public function render()
     {
-        return view('livewire.modal');
+        $user = auth()->user();
+
+        return view('livewire.modal')->with('user', $user);
     }
 }

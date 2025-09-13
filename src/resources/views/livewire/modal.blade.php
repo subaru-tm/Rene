@@ -50,6 +50,20 @@
                                 Mypage
                             </a>
                         </div>
+                        @if($user->is_admin)
+                            <div class="menu-item">
+                                <a href="/admin/index" >
+                                    AdminPage
+                                </a>
+                            </div>
+                        @endif
+                        @if($user->is_manager)
+                            <div class="menu-item">
+                                <a href="/manager/index" >
+                                    ManagerPage
+                                </a>
+                            </div>
+                        @endif
                     @endguest
                 </div>
             </div>

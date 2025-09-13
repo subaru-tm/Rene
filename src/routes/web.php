@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,8 @@ Auth::routes();
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
-Route::get('/login', [LoginController::class, 'loginView'])->name('login.view');
-Route::post('/login',[LoginController::class, 'login'])->name('login');
+Route::post('/login/store',[LoginController::class, 'login'])->name('login.store');
+Route::get('/login', [LoginController::class, 'loginView'])->name('login');
 Route::get('/thanks', [RegisterController::class, 'thanks'])->name('thanks');
 
 Route::get('/detail/{restaurant_id}', [RestaurantController::class, 'detail'])->name('detail');
@@ -30,6 +32,8 @@ Route::get('/search', [RestaurantController::class, 'search'])->name('search');
 
 
 Route::middleware('auth')->group(function () {
+    Route::patch('/review/{reservation_id}', [ReservationController::class, 'review']);
+    Route::patch('/update/{reservation_id}', [ReservationController::class, 'update']);
     Route::post('/cancel/{reservation_id}', [ReservationController::class, 'cancel']);
     Route::post('/detail/{restaurant_id}/reservation', [ReservationController::class, 'reservation'])->name('reservation');
     Route::get('/done', [ReservationController::class, 'done']);
@@ -38,5 +42,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MypageController::class, 'mypage']);
 });
 
+
+// 以下、追加実装として管理画面
+Route::middleware('auth')->group(function () {
+    Route::patch('/admin/empowerment/{user_id}', [AdminController::class, 'empowerment']);
+    Route::patch('/admin/revoke/{user_id}', [AdminController::class, 'revoke']);
+    Route::post('/admin/notify/send', [AdminController::class, 'sendNotify']);
+    Route::get('/admin/notify', [AdminController::class, 'adminNotify']);
+    Route::get('/admin/index/search', [AdminController::class, 'adminSearch']);
+    Route::get('/admin/index', [AdminController::class, 'adminIndex']);
+
+    Route::POST('/manager/new/register/store', [ManagerController::class, 'restaurantStore']);
+    Route::get('/manager/new/register', [ManagerController::class, 'restaurantRegister']);
+    Route::get('/manager/index/search', [ManagerController::class, 'managerIndex']);
+    Route::get('/manager/index', [ManagerController::class, 'managerIndex']);
+});
 
 Route::get('/', [RestaurantController::class, 'index'])->name('home');

@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\Favorite;
+use App\Models\User;
 
 class Restaurant extends Model
 {
@@ -16,6 +17,7 @@ class Restaurant extends Model
     protected $fillable = [
         'area_id',
         'genre_id',
+        'user_id',
         'name',
         'description',
     ];
@@ -28,6 +30,11 @@ class Restaurant extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function reservations()
@@ -60,4 +67,20 @@ class Restaurant extends Model
             $query->where('name', 'like', '%'.$name.'%');
         }
     }
+
+    // 店舗代表者用の管理画面で、担当店舗、それ以外を抽出
+    public function scopeInCharge($query, $user_id)
+    {
+        if(!empty($user_id)) {
+            $query->where('user_id', $user_id);
+        }
+    }
+
+    public function scopeOther($query, $user_id)
+    {
+        if(!empty($user_id)) {
+            $query->where('user_id', '<>', $user_id)->orWhereNull('user_id');
+        }
+    }
+
 }

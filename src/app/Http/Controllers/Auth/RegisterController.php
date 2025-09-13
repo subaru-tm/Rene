@@ -9,10 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Providers\RouteServiceProvider;
-// use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
 

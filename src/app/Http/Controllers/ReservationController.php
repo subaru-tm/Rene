@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use Carbon\Carbon;
+use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
-    public function reservation(Request $request, $restaurant_id)
+    public function reservation(ReservationRequest $request, $restaurant_id)
     {
         $user_id = Auth::id();
         $number = str_replace('人', '', $request->number);
@@ -50,5 +51,28 @@ class ReservationController extends Controller
         }
 
         return redirect()->intended(route('detail', ['restaurant_id' => $restaurant_id]));
+    }
+
+    public function update(Request $request, $reservation_id) {
+        // viewの入力欄にある「人」を取り除いてDBに登録。
+        $number = str_replace('人', '', $request->number);
+
+        $reservation_update = Reservation::find($reservation_id)->update([
+            'date' => $request->date,
+            'time' => $request->time,
+            'number' => $number,
+        ]);
+
+        return redirect('mypage');
+    }
+
+    public function review(Request $request, $reservation_id) {
+
+        $reservation_review = Reservation::find($reservation_id)->update([
+            'review_rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect('mypage');
     }
 }

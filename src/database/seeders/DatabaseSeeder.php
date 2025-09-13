@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AreasTableSeeder::class);
         $this->call(GenresTableSeeder::class);
         $this->call(RestaurantsTableSeeder::class);
-        Reservation::factory()->count(20)->create();
+        Reservation::factory()->count(30)->create();
         Favorite::factory()->count(10)->create();
     }
 }

@@ -17,6 +17,7 @@ class RestaurantsTableSeeder extends Seeder
         $param =[
             'area_id' => '1',
             'genre_id' => '1',
+            'user_id' => '5',
             'name' => '仙人',
             'description' => '料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。',
             'image_pass' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
@@ -44,6 +45,7 @@ class RestaurantsTableSeeder extends Seeder
         $param =[
             'area_id' => '1',
             'genre_id' => '4',
+            'user_id' => '5',
             'name' => 'ルーク',
             'description' => '都心にひっそりとたたずむ、古民家を改築した落ち着いた空間です。イタリアで修業を重ねたシェフによるモダンなイタリア料理とソムリエセレクトによる厳選ワインとのペアリングが好評です。ゆっくりと上質な時間をお楽しみください。',
             'image_pass' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/italian.jpg',

@@ -19,6 +19,59 @@
         <div class="restaurant-info__script">
             {{ $restaurant->description }}
         </div>
+        @if ($rating_average == 0)
+            <!-- まだ評価がない場合は何も表示しない -->
+        @else
+            <div class="restaurant-info__review">
+                <!-- 評価の★を表示をforeachで繰り返し表示するための配列を定義 -->
+                <?php $is = [1, 2, 3, 4, 5]; ?>
+                <div class="review-rating__average">
+                    <p>来店者の評価（平均）</p>
+                    <span class="review-rating__average-star">
+                        @foreach( $is as $i )
+                            <input class="rating__input" id="average-star$i" name="rating" type="radio" value="$i"
+                                @if ($rating_average >= $i)
+                                    checked
+                                @endif
+                                disabled>
+                            <label class="rating__label-average" for="average-star$i"
+                                @if ($rating_average >= $i)
+                                    style="color: #FF8282;"
+                                @endif
+                            >★</label>
+                        @endforeach
+                    </span>
+                    <p class="review-rating__average-numeric">
+                        {{ number_format($rating_average, 1) }}
+                    </p>
+                </div>
+                <div class="review-ratings__comments">
+                    <p class="review-ratings__comments-title">
+                        みんなのコメント
+                    </p>
+                    @foreach( $visited_reservations as $reservation )
+                        @if( !is_null($reservation->review_rating))
+                            <div class="review-card">
+                                <span>{{ $reservation->user->name }}</span>
+                                @foreach( $is as $i )
+                                    <input class="rating__input" id="star$i" name="rating" type="radio" value="$i"
+                                        @if ($reservation->review_rating >= $i)
+                                            checked
+                                        @endif
+                                        disabled>
+                                    <label class="rating__label" for="star$i"
+                                        @if ($reservation->review_rating >= $i)
+                                            style="color: #FF8282;"
+                                        @endif
+                                    >★</label>
+                                @endforeach
+                                <p class="review-card__comment">{{ $reservation->comment }}</p>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
     <div class="reservation">
         <h2>予約</h2>
@@ -26,8 +79,28 @@
             @csrf
             <div class="reservation-form__input">
                 <input class="reservation-form__input-date" type="date" name="date" value="{{ old('name') }}" />
+                <div class="invalid-feedback" role="alert">
+                    @error('date')
+                        <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
                 <input class="reservation-form__input-time" type="time" name="time" value="{{ old('time') }}" />
-                <input class="reservation-form__input-number" type="text" name="number" value="{{ old('number') }}人" />
+                <div class="invalid-feedback" role="alert">
+                    @error('time')
+                        <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
+                <input class="reservation-form__input-number" type="text" name="number" 
+                    @if( $errors->has('number') )
+                        value="{{ old('number') }}"
+                    @else
+                        value="人"
+                    @endif />
+                <div class="invalid-feedback" role="alert">
+                    @error('number')
+                        <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
             </div>
 
             <button class="reservation-form__submit" type="submit">予約する</button>

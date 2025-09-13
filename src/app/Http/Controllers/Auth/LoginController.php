@@ -49,20 +49,18 @@ class LoginController extends Controller
 
     /**
      * Attempt to authenticate a new session.
-     *
-     * @param  \Laravel\Fortify\Http\Requests\LoginRequest  $request
-     * @return mixed
      */
 
-//    public function login(LoginRequest $request)
-//    {
-//        $credentials = $request->only('email', 'password');
-//        if (Auth::attempt($credentials)) {
-//            $request->session()->regenerate();
-//            $user = Auth::user();
-//            session(['unauthenticated_user'=>$user]);
-//            return redirect()->intended(route('home'));
-//        }
-//    }
-
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+            session(['unauthenticated_user'=>$user]);
+            return redirect()->route('home');
+        } else {
+            return redirect('/login')->withErrors(['email' => 'メールアドレスまたはパスワードが正しくありません']);
+        }
+    }
 }
