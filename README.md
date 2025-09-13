@@ -3,10 +3,10 @@
 ## 環境構築
 - Dockerビルド
   - git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
-  - mv laravel-docker-template/ Rene/
+  - mv laravel-docker-template/ Rese/
   - docker-compose up -d --build
 - gitリモートリポジトリの変更
-  - git remote set-url origin git@github.com:subaru-tm/Rene.git
+  - git remote set-url origin git@github.com:subaru-tm/Rese.git
 - Laravel環境構築
   - doker-compose exec php bash
   - composer install
