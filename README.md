@@ -38,3 +38,4 @@
 ## 使用技術
 - laravel/fortify 1.19
 - livewire/livewire 2.12
+- simplesoftwareio/simple-qrcode 4.2
