@@ -19,6 +19,17 @@
   - php artisan storage:link  // シンボリックリンク作成
   - composer require livewire/livewire  // menuをモーダル表示にするためにインストール
     - php artisan make:livewire Modal
+  - タスクスケジューラについて
+    - 今回の実装方法は、Artisanコマンドで処理を作成し、app/Console/Kernel.phpにてスケジュール定義をしています。
+      - (PHPコンテナ内にて)
+      - php artisan make:command Sendmails
+        - 作成されたファイル : app/Console/Commands/SendEmails.php
+    - また定義したスケジューラの実行のためcronをエントリしています
+      - (プロジェクトルートディレクトリにて(コンテナの外))
+      - sudo apt install php-gd // crontabを編集するにあたりエラーが出たためgdをインストール
+      - crontab -e //下記1行を追加。
+        - * * * * * cd /home/pleiades_tm/coachtech/laravel/Rese && docker-compose exec php php artisan schedule:run >> /dev/null 2>&1
+    - 
 ## 開発環境
 
 ## 使用技術
