@@ -29,6 +29,9 @@
       - sudo apt install php-gd // crontabを編集するにあたりエラーが出たためgdをインストール
       - crontab -e //下記1行を追加。
         - * * * * * cd /home/pleiades_tm/coachtech/laravel/Rese && docker-compose exec php php artisan schedule:run >> /dev/null 2>&1
+    - ★重要★なお、タスクスケジューラでのメール送信実行はqueueを使用しています。このため実行時には下記コマンドにてqueueを稼働させてください
+      - (プロジェクトルートディレクトリでの実行を想定。PHPコンテナ内での実行も可(その場合は、先頭からの"docker-compose exec php"は不要)
+      - docker-compose exec php php artisan queue:work --queue=emails
     - 
 ## 開発環境
 
