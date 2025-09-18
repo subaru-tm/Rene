@@ -7,7 +7,8 @@
 @section('content')
 <div class="content">
     <div class="content-header">
-        <a class="back-button" href="/manager/index"> ＜ </a>
+    <!-- controllerで取得の直前ページに戻る。当viewへの画面遷移は2パターンあるため。 -->
+        <a class="back-button" href="{{ $previousUrl }}"> ＜ </a>
         <h2>利用者へのお知らせ送信（店舗代表者）</h2>
     </div>
     <form class="mail-form" action="/manager/notify/send" method="POST">

@@ -105,7 +105,11 @@ class DetailTest extends TestCase
         $user_id = Auth::id();
 
         // キャンセルする予約を選定(キャンセルされていない予約)
-        $reservation = Reservation::where('user_id', $user_id)->where('cancel_flug', '0')->first();
+        $now = Carbon::now();
+        $reservation = Reservation::where('user_id', $user_id)
+            ->where('cancel_flug', '0')
+            ->where('date', '>', $now)
+            ->first();
         $reservation_id = $reservation->id;
         $restaurant_id = $reservation->restaurant_id;
         $restaurant = Restaurant::find($restaurant_id);

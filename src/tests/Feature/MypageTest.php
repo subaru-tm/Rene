@@ -10,6 +10,7 @@ use Database\Seeders\DatabaseSeeder;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\User;
+use Carbon\Carbon;
 
 class MypageTest extends TestCase
 {
@@ -32,10 +33,27 @@ class MypageTest extends TestCase
         $response->assertStatus(200);
 
         // マイページに表示された予約が、データベースの全ての予約であることを検証
+        $now = Carbon::now();
         $responseData = $response->original->getData();
-        $databaseReservations = Reservation::with('restaurant')->where('user_id', $user_id)->where('cancel_flug', '0')->get();
+        $databaseReservations = Reservation::with('restaurant')
+            ->where('user_id', $user_id)
+            ->where('cancel_flug', '0')
+            ->where('date', '>=', $now)
+            ->orderBy('date', 'asc')
+            ->get();
 
-        $this->assertEquals($databaseReservations, $responseData['reservations']);
+        $databaseVisitedReservations = Reservation::with('restaurant')
+            ->where('user_id', $user_id)
+            ->where('cancel_flug', '0')
+            ->where('date', '<', $now)
+            ->where('review_rating', null)
+            ->orderBy('date', 'asc')
+            ->get();
+
+        $concatDatabaseReservations = $databaseReservations->concat($databaseVisitedReservations);
+        $concatResponseReservations = $responseData['reservations']->concat($responseData['visitedReservations']);
+
+        $this->assertEquals($concatDatabaseReservations, $concatResponseReservations);
 
         // マイページに表示されたお気に入り店舗が、データベースの全てのお気に入りであることを検証
         $databaseFavorite = Favorite::with('restaurant')->where('user_id', $user_id)->where('favorite_flug', '1')->get();

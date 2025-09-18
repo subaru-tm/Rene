@@ -131,23 +131,25 @@ class ManagerController extends Controller
 
     public function managerNotify($restaurant_id, $user_id) {
 
+        $previousUrl = url()->previous();
+
         if( !is_null($restaurant_id) && !is_null($user_id))
         {
             $restaurant = Restaurant::find($restaurant_id);
             $user = User::find($user_id);
-            return view('manager-notify', compact('restaurant', 'user'));
+            return view('manager-notify', compact('restaurant', 'user', 'previousUrl'));
         } elseif ( !is_null($restaurant_id) && is_null($user_id) )
         {
             $restaurant = Restaurant::find($restaurant_id);
-            return view('manager-notify', compact('restaurant'));
+            return view('manager-notify', compact('restaurant', 'previousUrl'));
         } elseif ( !is_null($user_id) && is_null($restaurant_id) )
         {
             // 現状は、店舗指定が無いのにユーザー(客)が特定されている
             // 当ケースは想定外だが、論理的なMECEのために記述。
             $user = User::find($user_id);
-            return view('manager-notify', compact('user'));
+            return view('manager-notify', compact('user', 'previousUrl'));
         } else {
-            return view('manager-notify');
+            return view('manager-notify', compact('previousUrl'));
         }
 
     }

@@ -48,7 +48,7 @@ use App\Models\Genre;
                         </td>
                     </tr>
                 </table>
-                <div class="reservation-card__buttons">
+                <div class="reservation-card__button">
                     @livewire('review-modal', ['reservation_id' => $reservation->id])
                 </div>
             </div>
@@ -96,18 +96,27 @@ use App\Models\Genre;
                         </td>
                     </tr>
                 </table>
-                <div class="reservation-card__buttons">
+                <div class="reservation-card__button">
                     <button class="reservation-edit__button" id="{{ $reservation->id }}__edit" type="button">
-                        変更する
+                        予約を変更する
                     </button>
                     <button class="reservation-update__button" id="{{ $reservation->id }}__update" type="submit">
-                        更新する
+                        予約を更新する
                     </button>
                     <button class="edit-cancel__button" id="{{ $reservation->id }}__edit-cancel" type="button">
                         戻る
                     </button>
                 </div>
             </form>
+                <div class="reservation-card__buttons">
+                    @livewire('qrcode-show', [
+                        'reservation_id' => $reservation->id
+                    ])
+                    <form class="reservation-card__payment" action="/stripe/index" method="GET">
+                        @csrf
+                        <button class="reservation-card__payment-button">決済する</button>
+                    </form>
+                </div>
         </div>
         <?php $i++; ?>
         <script>
