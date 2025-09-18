@@ -20,6 +20,7 @@ class Restaurant extends Model
         'user_id',
         'name',
         'description',
+        'image_pass',
     ];
 
     public function area()

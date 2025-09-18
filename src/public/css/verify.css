@@ -1,0 +1,24 @@
+
+.card {
+    margin: 120px auto;
+    padding: 24px 48px;
+    width: 640px;
+    background: #FFFFFF;
+}
+
+.card-header {
+    margin-bottom: 24px;
+}
+
+.card-body {
+}
+
+.resend-form__button {
+    margin: 24px 0 24px 48px;
+    padding: 4px 8px;
+    background: #0000FF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -127,10 +127,19 @@
                             <td class="table-item">{{ $reservation->number }}人</td>
                         </tr>
                     </table>
-                    <form class="reservation-card__cancel" action="/cancel/{{ $reservation->id }}" method="POST">
-                        @csrf
-                        <button class="reservation-card__cancel-button">キャンセルする</button>
-                    </form>
+                    <div class="reservation-card__buttons">
+                        @livewire('qrcode-show', [
+                            'reservation_id' => $reservation->id
+                        ])
+                        <form class="reservation-card__payment" action="/stripe/index" method="GET">
+                            @csrf
+                            <button class="reservation-card__payment-button">決済する</button>
+                        </form>
+                        <form class="reservation-card__cancel" action="/cancel/{{ $reservation->id }}" method="POST">
+                            @csrf
+                            <button class="reservation-card__cancel-button">キャンセルする</button>
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </div>

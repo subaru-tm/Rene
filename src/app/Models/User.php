@@ -11,7 +11,7 @@ use App\Models\Reservation;
 use App\Models\Favorite;
 use App\Models\Restaurant;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 

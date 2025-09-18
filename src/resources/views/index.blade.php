@@ -54,7 +54,11 @@
 <div class="restaurants-list">
     @foreach($restaurants as $restaurant)
         <div class="restaurant-card">
-            <img src="{{ $restaurant->image_pass }}" alt="" />
+            @if( asset( $restaurant->image_pass ) )
+                <img src="{{ asset( $restaurant->image_pass ) }}" alt="" />
+            @else
+                <img src="{{ $restaurant->image_pass }}" alt="" />
+            @endif
             <div class="restaurant-card__info">
                 <div class="restaurant-card__info-name">
                     {{ $restaurant->name }}

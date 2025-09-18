@@ -66,6 +66,10 @@ class ReservationController extends Controller
         return redirect('mypage');
     }
 
+    public function stripe() {
+        return view('stripe.stripe-index');
+    }
+
     public function review(Request $request, $reservation_id) {
 
         $reservation_review = Reservation::find($reservation_id)->update([

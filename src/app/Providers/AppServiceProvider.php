@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // 予約入力のバリデーション(ReservationRequest)で使用。
-        // 人数入力で未入力（placeholderの「人」のまま）の場合にエラーとする
+        // 人数入力で未入力（数字の入力なく「人」のまま）の場合にエラーとする
         Validator::extend('custom_check_number', function ($attribute, $value, $parameters, $validator) { 
             if( $value === '人' ) {
                 return false;

@@ -56,4 +56,23 @@ class Reservation extends Model
           // 来店後（過去日付の予約レコード）、評価が登録されていないレコードのみを抽出する（マイページ表示用）
     }
 
+    public function scopeRestaurantIdSearch($query, $restaurant_id, $cancel_flug_off, $now)
+    {
+        if( !empty($restaurant_id) ) {
+            $query->where('restaurant_id', $restaurant_id)->where('cancel_flug', $cancel_flug_off)->where('date', '>=', $now);
+        }
+    }
+
+    public function scopeRestaurantIdVisitedSearch($query, $restaurant_id, $cancel_flug_off, $now)
+    {
+        if( !empty($restaurant_id) ) {
+            $query->where('restaurant_id', $restaurant_id)->where('cancel_flug', $cancel_flug_off)->where('date', '<', $now);
+        }
+    }
+
+    public function scopeReservationOfToday($query, $cancel_flug_off, $today)
+    {
+        $query->where('cancel_flug', $cancel_flug_off)->where('date', $today);
+    }
+
 }

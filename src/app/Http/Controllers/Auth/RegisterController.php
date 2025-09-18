@@ -71,7 +71,6 @@ class RegisterController extends Controller
 //        $this->guard->login($user);
 
         return redirect()->route('thanks');
-//        return redirect()->route('verification.notice');
     }
 
     public function thanks()

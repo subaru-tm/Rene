@@ -8,6 +8,14 @@ class ReceiveUserSelected extends Component
 {
     public $selectedUser = '';
 
+    public $user;
+
+    public function mount() {
+        if( isset($user) ) {
+            $this->user = $user;
+        }
+    }
+
     protected $listeners = [
         'userSelect' => 'handleUserSelect',
     ];

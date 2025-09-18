@@ -1,0 +1,185 @@
+.content {
+    width: 700px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.content-header {
+    margin-top: 24px;
+    width: 150vh;
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    height: 30px;
+    padding: 6px 9px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #696969;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.content-header h2 {
+    margin-left: 24px;
+}
+
+.restaurant-register__form {
+    background: #FFFFFF;
+    width: 100%;
+    padding: 16px 8px;
+    border-radius: 8px;
+}
+
+.restaurant-register__form-item {
+    margin: 8px 4px 16px 16px;
+}
+
+.form-item__select-manager {
+    margin: -40px 16px 0 auto;
+    text-align: end;
+    height: 40px;
+    width: 180px;
+}
+
+.selected-user_display {
+    margin-left: 16px;
+}
+
+
+.form-item__img-label {
+    padding: 2px 8px;
+    background: #696969;
+    color: #FFFFFF;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-item__img-attach {
+    display: none;
+}
+
+.restaurant-register__area-genre {
+    margin: 8px 4px 16px 16px;
+    display: flex;
+}
+
+.select-modal__background {
+    width: 600px;
+    height: auto;
+    transform: translate(-70%, -30%);
+    background-color: #FDFCE6;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    z-index: 1000;
+}
+
+.user-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.user-search button {
+    margin-top: 16px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 4px;
+    color: #696969;
+    cursor: pointer;
+}
+
+.user-search__form {
+    display: flex;
+    justify-content: end;
+    height: 24px;
+    padding: 8px 8px;
+}
+
+.user-search__form-separator {
+    margin: 0 4px;
+    color: #dbdbdb;
+    font-size: 14px;
+}
+
+.user-search__form-input img {
+    width: 24px;
+    height: 24px;
+}
+
+.user-search__form-input input {
+    border: none;
+}
+
+.select-modal__header {
+    background-color: #FDFCE6;
+    padding: 0 16px 0 16px;
+    text-align: start;
+    font-size: 20px;
+    color: #000000;
+}
+
+.select-modal__body {
+    margin: 0;
+}
+
+.list-table__inner {
+    margin: 4px auto;
+    width: 90%;
+    min-height: 320px;
+    background: #FFFFFF;
+}
+
+.list-table__row {
+    vertical-align: top;
+}
+
+.list-table__header-item {
+    padding: 12px 0;
+    height: 36px;
+    border-bottom: 1px solid #696969;
+    text-align: center;
+}
+
+.list-table__item {
+    padding: 8px 4px 8px 16px;
+    text-align: center;
+}
+
+.list-table__item button {
+    padding: 4px 8px;
+    background: #0000FF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-item__description-input {
+    width: 90%;
+    height: 80px;
+}
+
+.register-form__submit-button {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    background: #0000FF;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.register-form__submit-status {
+    color: #0000FF;
+}
+
+.input-feild__alert {
+    color: red;
+    font-weight: bold;
+}

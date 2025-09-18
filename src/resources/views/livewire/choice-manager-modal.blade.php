@@ -1,7 +1,11 @@
 <div>
     <div class="content-header__modal-open">
         <button class="choice-manager__button" wire:click="openModal()" type="button">
-            店舗代表者を選択
+            @if( !empty($old_user) )
+                店舗代表者を変更
+            @else
+                店舗代表者を選択
+            @endif
         </button>
     </div>
     @if($showModal)

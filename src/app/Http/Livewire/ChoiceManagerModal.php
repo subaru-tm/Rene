@@ -8,7 +8,8 @@ use App\Models\User;
 class ChoiceManagerModal extends Component
 {
     public $showModal=false;
-    public $users;
+    public $old_user;  // 更新の場合の登録済の代表者
+    public $users; // 新規・更新に関わらずモーダル一覧に表示する代表者
 
     public function mount() {
         $this->users = User::where('is_manager', true)->get();
@@ -20,7 +21,7 @@ class ChoiceManagerModal extends Component
 
     public function closeModal() {
         $this->showModal=false;
-        $this->selectedUser = null;
+        $this->selectedUser=null;
     }
 
     public function render()

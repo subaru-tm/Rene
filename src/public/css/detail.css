@@ -185,15 +185,73 @@ main {
     padding-left: 24px;
 }
 
-.reservation-card__cancel {
-    z-index: 1100;
+.reservation-card__buttons {
     margin: auto 0 0 auto;
 }
 
-.reservation-card__cancel-button {
+.reservation-card__qrcord-button {
+    width: 120px;
     background: #B0C4DE;
     border: none;
     border-radius: 8px;
-    color: #6495ED;
+    color: #0000FF;
     cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.qrcode-area__modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 300px;
+    background-color: #FDFCE6;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    z-index: 1200;
+}
+
+.qrcode-area__modal h5 {
+    position: absolute;
+    top: 0;
+    left: 7%;
+    color: #0000FF;
+    font-size: 14px;
+}
+
+.qrcode-area__modal p {
+    position: absolute;
+    top: 13%;
+    left: 7%;
+
+}
+
+.qrcode-area__modal-close {
+    position: absolute;
+    bottom: 2%;
+    right: 7%;
+    cursor: pointer;
+    background: #696969;
+    color: #FFFFFF;
+}
+
+.reservation-card__payment-button {
+    width: 120px;
+    background: #0000FF;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.reservation-card__cancel-button {
+    width: 120px;
+    background: #B0C4DE;
+    border: none;
+    border-radius: 8px;
+    color: #000000;
+    cursor: pointer;
+    z-index: 1100;
 }

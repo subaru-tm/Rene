@@ -1,10 +1,24 @@
 <div class="form-item__select-manager">
-    @livewire('choice-manager-modal')
+    @if( !empty($user) )
+        <!-- 店舗更新画面からの呼び出しで代表者が登録済の場合
+          -- 変更できるようにボタンは表示。モーダルを開かなくても値は保持。 -->
 
+        <?php  
+            $user_id = $user->id;
+            $name = $user->name;
+        ?>
+
+        @livewire('choice-manager-modal', ['old_user' => $user])
+
+
+    @else
+        @livewire('choice-manager-modal')
+    @endif
+
+    <!-- 店舗更新画面で既に代表者登録済であってもモーダルで新たに選択すると上書きされる -->
     <?php if(!empty($selectedUser)) { 
         $user_id = $selectedUser['id'];
         $name = $selectedUser['name'];
-        $email = $selectedUser['email'];        
     } ?>
 
     <span class="selected-user_display">

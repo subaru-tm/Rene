@@ -1,0 +1,105 @@
+main {
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    height: auto;
+}
+
+.manager-notify__link {
+    position: absolute;
+    top: 24px;
+    right: 140px;
+    width: 180px;
+    text-decoration: none;
+    text-align: center;
+    background: #0000FF;
+    color: #FFFFFF;
+    border-radius: 4px;
+}
+
+.restaurant-info {
+    margin-left: 8px;
+    width: 40%;
+    height: 80vh;
+    overflow: auto;
+}
+
+.restaurant-info__header {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    height: 30px;
+    padding: 6px 9px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #696969;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.restaurant-info__name {
+    margin-left: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.restaurant-info img {
+    width: 100%;
+}
+
+.reservation {
+    position: relative;
+    width: 40%;
+    height: auto;
+    min-height: 690px;
+    background: #4169E1;
+    margin-left: 120px;
+    padding: 0 28px;
+    border-radius: 6px;
+}
+
+.reservation h2 {
+    color: #FFFFFF;
+}
+
+.reservation-record {
+    width: 100%;
+    height: 60%;
+    margin: 16px auto;
+    overflow-y: auto;
+}
+
+.reservation-card {
+    padding: 16px 16px;
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    background: #6495ED;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.table-item {
+    padding-left: 32px;
+}
+
+.reservation-card__notify-link {
+    margin: auto 0 0 auto;
+    padding: 8px 8px;
+    background: #0000FF;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}

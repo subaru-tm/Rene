@@ -50,7 +50,7 @@
 </div>
 
 <a class="restaurant-register__link" href="/manager/new/register">新しい店舗を登録</a>
-<a class="manager-notify__link" href="/manager/notify">利用者へのお知らせ</a>
+<a class="manager-notify__link" href="/manager/null/notify/null">全利用者へのお知らせ</a>
 
 <h2 class="incharge-title">{{ $user->name }}さんが代表者の店舗</h2>
 <div class="restaurants-incharge">
@@ -77,7 +77,11 @@
     @else
         @foreach($restaurantsInCharge as $restaurant)
             <div class="restaurant-card">
-                <img src="{{ $restaurant->image_pass }}" alt="" />
+                @if( asset( $restaurant->image_pass ) )
+                    <img src="{{ asset( $restaurant->image_pass ) }}" alt="" />
+                @else
+                    <img src="{{ $restaurant->image_pass }}" alt="" />
+                @endif
                 <div class="restaurant-card__info">
                     <div class="restaurant-card__info-name">
                         <p>{{ $restaurant->name }}</p>
@@ -88,7 +92,7 @@
                         <span>#{{ $restaurant->genre->name }}</span>
                     </div>
                     <div class="restaurant-card__info-footer">
-                        <a class="restaurant-card__status-link" href="/manager/{{ $restaurant->id }}/reservation/status" >予約状況を確認</a>
+                        <a class="restaurant-card__status-link" href="/manager/{{ $restaurant->id }}/reservation/check" >予約状況を確認</a>
                     </div>
                 </div>
             </div>
@@ -99,7 +103,11 @@
     <div class="restaurants-other__list">
         @foreach($restaurantsOther as $restaurant)
             <div class="restaurant-card__other">
-                <img src="{{ $restaurant->image_pass }}" alt="" />
+                @if( asset( $restaurant->image_pass ) )
+                    <img src="{{ asset( $restaurant->image_pass ) }}" alt="" />
+                @else
+                    <img src="{{ $restaurant->image_pass }}" alt="" />
+                @endif
                 <div class="restaurant-card__info">
                     <div class="restaurant-card__info-name">
                         <p>{{ $restaurant->name }}</p>

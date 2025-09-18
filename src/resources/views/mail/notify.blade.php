@@ -1,2 +1,1 @@
-
-<p?>{{ $content }}</p>
+<p>{!! $content !!}</p>

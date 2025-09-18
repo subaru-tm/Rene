@@ -65,10 +65,25 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
-            'queue' => env('REDIS_QUEUE', 'default'),
+            'queue' => 'emails',
             'retry_after' => 90,
-            'block_for' => null,
-            'after_commit' => false,
+            'block_for' => 5,
+            'option' => [
+                'rate_limiter' => [
+                    'key' => 'emails-rate-limit',
+                    'allow' => 1,
+                    'every' => 1,
+                ],
+            ],
+//            'after_commit' => false,
+        ],
+
+        'emails' => [
+            'driver' => 'redis',
+            'rate_limit' => [
+                'allows' => 1,
+                'every' => 1,
+            ],
         ],
 
     ],

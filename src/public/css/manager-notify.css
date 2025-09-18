@@ -1,0 +1,78 @@
+.content {
+    width: 100vh;
+    height: auto;
+    margin: 0 auto;
+}
+
+.content-header {
+    margin-top: 24px;
+    width: 150vh;
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    height: 30px;
+    padding: 6px 9px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #696969;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.content-header h2 {
+    margin-left: 24px;
+}
+
+.mail-form {
+    background: #FFFFFF;
+    width: 90vh;
+    padding: 16px 8px;
+    border-radius: 8px;
+}
+
+.mail-item {
+    margin: 8px 4px 16px 16px;
+}
+
+.mail-to__select {
+    margin-left: 8px;
+    padding: 6px 8px;
+}
+
+.mail-subject__input {
+    margin-left: 8px;
+    padding: 6px 8px;
+    width: 90%;
+}
+
+.mail-content__label {
+    vertical-align: top;
+}
+
+.mail-content__input {
+    margin-left: 8px;
+    padding: 6px 8px;
+    width: 90%;
+    height: 120px;
+}
+
+.mail-form button {
+    display: block;
+    margin: 0 5% 0 auto;
+    padding: 6px 12px;
+    width: 80px;
+    background: #0000FF;
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.mail-form__submit-status {
+    margin-left: 48px;
+    color: #0000FF;
+}
