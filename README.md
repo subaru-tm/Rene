@@ -1,5 +1,6 @@
 # Rese (飲食店予約サービス)
-- ユーザーはグループ会社が運営する飲食店情報を閲覧でき、更に会員登録すると予約（変更可）や来店後の評価・コメントを送信できる
+- ユーザーはグループ会社が運営する飲食店情報を閲覧でき、更に会員登録すると予約（変更可）、お気に入り店舗登録や来店後の評価・コメントを送信できる
+- 蓄積された評価・コメントは飲食店詳細画面で誰でも参照することができる
 <img width="2227" height="1563" alt="image" src="https://github.com/user-attachments/assets/3c1f510a-127d-477a-b447-91955f1d2fe7" />
 
 ## 作成した目的 
@@ -19,43 +20,91 @@
     - test5@test.com / test5pass   // 店舗代表者(Manager)
       - ログイン画面は同じで、ログイン後メニューモーダルを開き"ManagerPage"をクリックすると店舗代表者の管理画面に遷移します
 
+## 他のリポジトリ
+- 他のリポジトリはありません。
+
+## 機能一覧
+- 会員登録
+- ログイン
+- ログアウト
+- メール認証(本人確認) 【追加実装分】
+- ユーザー情報取得
+- ユーザー飲食店お気に入り一覧取得
+- ユーザー飲食店予約情報取得
+- 飲食店一覧取得
+- 飲食店詳細取得
+- 飲食店お気に入り追加
+- 飲食店お気に入り削除
+- 飲食店予約情報追加
+- 飲食店予約情報変更【追加実装分】
+- 飲食店予約情報削除
+- エリアで検索する
+- ジャンルで検索する
+- 店名で検索する
+- 評価・コメント送信【追加実装分】
+- 管理画面（管理者）【追加実装分】
+  - 店舗代表者権限を付与・削除
+  - 全ユーザーへのお知らせ送信
+- 管理画面（店舗代表者）【追加実装分】
+  - 店舗情報作成
+  - 店舗情報更新
+  - 予約情報確認
+  - ユーザーへのお知らせ送信（全ユーザー／店舗来店履歴あるユーザー／予約中の個別ユーザー）
+- 画像ストレージ保存【追加実装分】
+- 予約当日リマインダー【追加実装分】
+- QRコード作成・表示【追加実装分】
+- 決済機能（STRIPE）【追加実装分】
+- バリデーション(会員登録、ログイン、予約追加、飲食店登録）【一部追加実装分を含む】
+
+## 使用技術
+- PHP 7.4.9
+- Laravel Framework 8.83.8
+- MySQL 8.0.26
+- nginx 1.21.1laravel/fortify 1.19
+- livewire/livewire 2.12
+- jquery 3.6.0
+- simplesoftwareio/simple-qrcode 4.2
+- redis_version:8.2.1
+
+## テーブル設計
+<img width="1337" height="970" alt="スクリーンショット 2025-09-20 164506" src="https://github.com/user-attachments/assets/8a53847a-30c5-4c27-ab97-10aaa5480fbf" />
+<img width="1336" height="1315" alt="スクリーンショット 2025-09-20 164545" src="https://github.com/user-attachments/assets/e0b2ae93-5fd2-4d58-9631-5e3c048be341" />
+
+## ER図
+<img width="941" height="605" alt="image" src="https://github.com/user-attachments/assets/10d8e8d3-2fdd-4d51-9d5b-d0e20d8b7b60" />
+
+
 ## 環境構築
 - Dockerビルド
-  - git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
-  - mv laravel-docker-template/ Rese/
+  - git clone git@github.com:subaru-tm/Rese.git
+  - cd Rese/
   - docker-compose up -d --build
-- gitリモートリポジトリの変更
-  - git remote set-url origin git@github.com:subaru-tm/Rese.git
 - Laravel環境構築
   - doker-compose exec php bash
   - composer install
-  - cp .env.example .env  // 環境変数を設定
+  - なお .envの修正は不要です
   - php artisan key:generate
-  - composer require laravel/fortify
-    - php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
-  - composer require laravel/ui // fortify標準のview等(register,login)を使用するためインストール
-    - php artisan ui bootstrap --auth
-  - php artisan storage:link  // シンボリックリンク作成
-  - composer require livewire/livewire  // menuをモーダル表示にするためにインストール
-    - php artisan make:livewire Modal
-  - タスクスケジューラについて
-    - 今回の実装方法は、Artisanコマンドで処理を作成し、app/Console/Kernel.phpにてスケジュール定義をしています。
-      - (PHPコンテナ内にて)
-      - php artisan make:command Sendmails
-        - 作成されたファイル : app/Console/Commands/SendEmails.php
-    - また定義したスケジューラの実行のためcronをエントリしています
-      - (プロジェクトルートディレクトリにて(コンテナの外))
-      - sudo apt install php-gd // crontabを編集するにあたりエラーが出たためgdをインストール
-      - crontab -e //下記1行を追加。
-        - * * * * * cd /home/pleiades_tm/coachtech/laravel/Rese && docker-compose exec php php artisan schedule:run >> /dev/null 2>&1
-    - ★重要★なお、タスクスケジューラでのメール送信実行はqueueを使用しています。このため実行時には下記コマンドにてqueueを稼働させてください
-      - (プロジェクトルートディレクトリでの実行を想定。PHPコンテナ内での実行も可(その場合は、先頭からの"docker-compose exec php"は不要)
-      - docker-compose exec php php artisan queue:work --queue=emails
-    - 
+- マイグレーション、シーダー(PHPコンテナ内にて)
+  -  php artisan migrate
+  -  php artisan db:seed
+- 以上まででアプリケーションは動く想定ですが、ブラウザを開いてエラーが出たらエラー内容次第ですが、権限付与で解決することが多いです。
+  - (プロジェクトルートディレクトリでの例) sudo chmod -R 777 ./*
+  - (少々危なっかしいコマンドだとも思いますが、今回はそこまで影響ないと考えます)
+
+- タスクスケジューラでのメール送信実行はqueueを使用しています。このため実行時には下記コマンドにてqueueを稼働させてください
+  - (プロジェクトルートディレクトリでの実行。PHPコンテナ内での実行も可(その場合は、先頭からの"docker-compose exec php"は不要)
+  - docker-compose exec php php artisan queue:work --queue=emails
+- メールはmailtrapを使用していますのでご確認の際は下記にてログインください
+  - https://mailtrap.io/
+    - ログイン(メアド):pleiades_tm@yahoo.co.jp
+      - (参考)アカウントID：2330889
+    - パスワード　：Test1@laravel
+  - なお、大変恐縮ですが、無料アカウントの都合でsandboxの受信制限で9月は残り5件しか受信できません。
+    - テストコードなどでは自動実行されないようにしていますので、ご確認される際は明示的に画面からの「送信」ボタンにて送信をお願いします。
+      - 管理者等からのお知らせの場合、全ユーザーや来店履歴ありのユーザーで複数宛先の場合でも、メール送信の場合は１件のメールです。
+      - 一方、リマインダーで送信する場合、ユーザーごとに1件ずつ送られます。このため予約当日、のユーザーが複数いたら、その人数分メールが送られます。
+        - mailtrapの制約だと思いますが、短時間で連続して送信するとエラーとなるので、queueでの送信としつつ、1件送ったらsleep(20)で間隔をあけています。
+
 ## 開発環境
 - 上記にて構築した環境が開発環境になります
 
-## 使用技術
-- laravel/fortify 1.19
-- livewire/livewire 2.12
-- simplesoftwareio/simple-qrcode 4.2
