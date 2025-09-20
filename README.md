@@ -109,8 +109,9 @@
 - 上記にて構築した環境が開発環境になります。.envファイルが開発環境用です。
 - ローカルでの本番環境について
   - .env.productionファイルを本番用の環境変数として追加しています
-  - また、docker-compose.prod.ymlも追加作成していて、本番環境用にdocker-compose.yml(共通項目)に対して追加・更新します
-  - DBは開発用と同じくmsqlコンテナを使用しますが、データベース名を"laravel_production_db"として区分します
+  - また、本番環境用にdocker-compose.prod.ymlも追加作成していて、開発環境と共通のdocker-compose.ymlに対して追加・更新します
+    - 【補足】今回は具体的には、環境変数を.env.productionを見るように追加のみしています。
+  - DBは開発用と同じくmysqlコンテナを使用しますが、データベース名を"laravel_production_db"として区分します
   - 本番環境への切り替え手順は次の通りです。
     - docker-compose stop  // 開発環境立ち上がっている前提として、コンテナを停止させます
     - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
@@ -126,6 +127,8 @@
     - 問題なければマイグレーション、シーダーを実行して本番環境への切り替え完了です
       - php artisan migrate
       - php artisan db:seed
+    - ブラウザからのURLは開発環境と同様です。
+
   - なお、本番環境から開発環境へ戻す場合、次の手順を実行してください
     - docker-compose stop
     - docker-compose -up -d  // ymlファイルを指定しないので、docker-compose.ymlのみ読込み
@@ -137,4 +140,5 @@
         - "local" が返ってきたらOK
       - config('database.connections.mysql.database');
         - "laravel_db" が返ってきたらOK
+
 - AWS環境について 
