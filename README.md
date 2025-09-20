@@ -105,6 +105,36 @@
       - 一方、リマインダーで送信する場合、ユーザーごとに1件ずつ送られます。このため予約当日、のユーザーが複数いたら、その人数分メールが送られます。
         - mailtrapの制約だと思いますが、短時間で連続して送信するとエラーとなるので、queueでの送信としつつ、1件送ったらsleep(20)で間隔をあけています。
 
-## 開発環境
-- 上記にて構築した環境が開発環境になります
-
+## 他の連絡事項（主に本番／開発／AWS環境について）
+- 上記にて構築した環境が開発環境になります。.envファイルが開発環境用です。
+- ローカルでの本番環境について
+  - .env.productionファイルを本番用の環境変数として追加しています
+  - また、docker-compose.prod.ymlも追加作成していて、本番環境用にdocker-compose.yml(共通項目)に対して追加・更新します
+  - DBは開発用と同じくmsqlコンテナを使用しますが、データベース名を"laravel_production_db"として区分します
+  - 本番環境への切り替え手順は次の通りです。
+    - docker-compose stop  // 開発環境立ち上がっている前提として、コンテナを停止させます
+    - docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+      - 【補足】コンテナ起動にて、docker-compose.prod.ymlも追加で読み込みます
+    - 以上で本番環境に切り替わっているはずですが、念のため、および確認コマンドです。
+      - docker-compose exec php bash
+      - php artisan config:clear
+      - php artisan tinker
+      - env('APP_ENV');
+        - "production" が返ってきたらOK
+      - config('database.connections.mysql.database');
+        - "laravel_production_db" が返ってきたらOK
+    - 問題なければマイグレーション、シーダーを実行して本番環境への切り替え完了です
+      - php artisan migrate
+      - php artisan db:seed
+  - なお、本番環境から開発環境へ戻す場合、次の手順を実行してください
+    - docker-compose stop
+    - docker-compose -up -d  // ymlファイルを指定しないので、docker-compose.ymlのみ読込み
+    - 以降、確認コマンドです(本番時と同様ですが念のため)
+      - docker-compose exec php bash
+      - php artisan config:clear
+      - php artisan tinker
+      - env('APP_ENV');
+        - "local" が返ってきたらOK
+      - config('database.connections.mysql.database');
+        - "laravel_db" が返ってきたらOK
+- AWS環境について 
