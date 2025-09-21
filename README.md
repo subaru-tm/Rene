@@ -144,5 +144,21 @@
         - "laravel_db" が返ってきたらOK
 
 - AWS環境について
+  - EC2, RDS, S3で環境構築済です。
+  - インスタンスは起動したままの状態で、Docekビルドも実行済のため環境構築は不要と考えます。
+  - アプリケーションURLは、http://localhost/をhttp://3.26.148.244/に変更ください。
+    - 例）飲食店一覧画面 : http://3.26.148.244/
   - プロンプトから下記コマンドでEC2インスタンスにSSH接続できます
     - ssh -i /home/pleiades_tm/.ssh/laravel-test.pem ec2-user@3.26.148.244
+  - AWS環境での使用技術
+    - Docker version 25.0.8, build 0bab007
+    - Docker Compose version v2.24.6
+    - git version 2.50.1
+    - league/flysystem-aws-s3-v3   version ^1.0
+    - mysql  Ver 15.1 Distrib 10.5.29-MariaDB, for Linux (x86_64) using  EditLine wrapper
+
+  - 【補足】.envはAWS用に更新しています。
+    - その中での留意点(特殊性？)として、storageフォルダとしてs3を使用するように.envに下記を追加しております。
+      - ASSET_URL=https://bucket-mitamura.s3.ap-southeast-2.amazonaws.com
+      - asset()ヘルパーの向き先を変えているため、cssファイルもs3にコピーしています。
+      - それ以外のソースコードはEC2インスタンス内のままです。
