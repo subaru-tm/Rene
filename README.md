@@ -80,7 +80,7 @@
   - cd Rese/
   - docker-compose up -d --build
 - Laravel環境構築
-  - doker-compose exec php bash
+  - docker-compose exec php bash
   - composer install
   - なお .envの修正は不要です
   - php artisan key:generate
